@@ -1,0 +1,10 @@
+{% extends "nav/nav_top_base.html.twig" %}
+
+{% block mainMenu %}
+    {{ render(controller('AppBundle:Default:buildMenu')) }}
+{% endblock mainMenu %}
+
+{% block rightMenu %}
+    <li><a href="{{ url('fos_user_security_login') }}">{{ 'rightmenu.login'|trans({}, "app") }}</a></li>
+    <li><a href="{{ url('fos_user_registration_register') }}">{{ 'rightmenu.register'|trans({}, "app") }}</a></li>
+{% endblock rightMenu %}

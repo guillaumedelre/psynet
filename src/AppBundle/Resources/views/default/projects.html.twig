@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/app/css/pinterest-grid.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body %}
+    <h5 class="description">LES PROJETS</h5>
+
+    <section id="pinBoot">
+        {% for item in items %}
+        <article class="white-panel">
+            <a href="{{ url('projectPage', {slug: item.slug}) }}"><img src="{{ item.imageUrl }}" alt="{{ item.title }}"></a>
+            <p class="description">{{ item.title }}</p>
+            <p>{{ item.headline|raw }}.</p>
+        </article>
+        {% endfor %}
+    </section>
+    <hr>
+{% endblock body %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/pinterest-grid.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#pinBoot').pinterest_grid({
+                no_columns: 4,
+                padding_x: 10,
+                padding_y: 10,
+                margin_bottom: 50,
+                single_column_breakpoint: 700
+            });
+        });
+    </script>
+{% endblock javascripts %}

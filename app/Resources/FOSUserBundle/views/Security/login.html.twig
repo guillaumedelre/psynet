@@ -1,0 +1,85 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <!-- START PAGE-CONTAINER -->
+    <div class="login-wrapper ">
+        <!-- START Login Background Pic Wrapper-->
+        <div class="bg-pic">
+            <!-- START Background Pic-->
+            <img src="{{ asset("assets/img/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg")  }}" data-src="{{ asset("assets/img/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg")  }}" data-src-retina="{{ asset("assets/img/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg")  }}" alt="" class="lazy">
+            <!-- END Background Pic-->
+            <!-- START Background Caption-->
+            <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+                <h2 class="semi-bold text-white">
+                    {{ 'login.title'|trans({},"app") }}
+                </h2>
+                <p class="small">
+                    {{ 'login.subtitle'|trans({},"app")|raw }}
+                </p>
+            </div>
+            <!-- END Background Caption-->
+        </div>
+        <!-- END Login Background Pic Wrapper-->
+        <!-- START Login Right Container-->
+        <div class="login-container bg-white">
+            <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+                <img src="{{ asset("assets/img/logo.png")}}" alt="logo" data-src="{{ asset("assets/img/logo.png")}}" data-src-retina="{{ asset("assets/img/logo_2x.png")}}">
+                <p class="p-t-35">{{ 'login.signaccount'|trans({},"app")|raw }}</p>
+                <!-- START Login Form -->
+
+                <form action="{{ path("fos_user_security_check") }}" method="post" class="p-t-15">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error|trans({}, 'FOSUserBundle') }}
+                            <button class="close" data-dismiss="alert"></button>
+                        </div>
+                    {% endif %}
+                    <div class="form-group form-group-default">
+
+                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                        <div class="controls">
+
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-default">
+                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                        <div class="controls">
+                            <input type="password" class="form-control"  id="password" name="_password" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 no-padding">
+                            <div class="checkbox ">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on">
+                                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="checkbox ">
+                                <a href="/resetting/request" class="text-info small">{{ 'login.retrievepassword'|trans({},"app")|raw }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Form Control-->
+                    <div class="row">
+                        <div class="col-md-6 tex-left">
+                                <input class="btn btn-complete btn-cons m-t-10" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a  href="register/" class="btn btn-success btn-cons m-t-10">{{ 'login.register'|trans({},"app")|raw }}</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!-- END Login Right Container-->
+    </div>
+{% endblock fos_user_content %}

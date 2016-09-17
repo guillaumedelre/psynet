@@ -1,0 +1,5 @@
+{% extends "nav/nav_top_base.html.twig" %}
+
+{% block mainMenu %}
+    {{ render(controller('AppBundle:Default:buildMenu')) }}
+{% endblock mainMenu %}

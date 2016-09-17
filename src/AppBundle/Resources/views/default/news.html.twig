@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/app/css/timeline.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body %}
+    <h5 class="description">ACTUALITES</h5>
+
+    <ul class="timeline">
+        {% for i, item in items %}
+            <li {% if i is odd %}class="timeline-inverted{% endif %}">
+                <div class="timeline-badge primary">
+                    <a><i class="glyphicon glyphicon-record {% if i is odd %}invert{% endif %}" rel="tooltip" title="{{ item.updatedAt|date('d/m/Y H:i:s') }}" id=""></i></a>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <a href="{{ url('newsPage', {slug: item.slug}) }}">
+                            <img class="img-responsive" src="{{ item.imageUrl }}" />
+                        </a>
+                    </div>
+                    <div class="timeline-body">
+                        <p class="description">{{ item.title }}</p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>{{ item.headline }}</p>
+                    </div>
+                    <div class="timeline-footer">
+                        <a href="#" class="text-muted"><i class="fa fa-facebook-square"></i></a>
+                        <a href="#" class="text-muted"><i class="fa fa-twitter-square"></i></a>
+                        <a href="#" class="text-muted"><i class="fa fa-google-plus-square"></i></a>
+                        <a href="{{ url('newsPage', {slug: item.slug}) }}" class="pull-right text-muted">Voir la suite...</a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock body %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            var my_posts = $("[rel=tooltip]");
+
+            var size = $(window).width();
+            for(i=0;i<my_posts.length;i++){
+                the_post = $(my_posts[i]);
+
+                if(the_post.hasClass('invert') && size >=767 ){
+                    the_post.tooltip({ placement: 'left'});
+                    the_post.css("cursor","pointer");
+                }else{
+                    the_post.tooltip({ placement: 'rigth'});
+                    the_post.css("cursor","pointer");
+                }
+            }
+        });
+    </script>
+{% endblock javascripts %}

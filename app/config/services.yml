@@ -1,0 +1,18 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.service.post:
+        class: AppBundle\Service\PostService
+        arguments:
+          - "@doctrine"
+          - "AppBundle:Post"
+
+    app.menu.builder:
+        class: AppBundle\Service\Menu\MenuBuilder
+        arguments:
+          - "@security.token_storage"
+          - "@translator.default"
+          - "@doctrine"

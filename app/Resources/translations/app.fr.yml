@@ -1,0 +1,22 @@
+mainmenu:
+    home: L'association
+    calendar: Calendrier
+    faq: FAQ
+    helpus: Comment aider ?
+    contact: Contactez nous
+    directories: Annuaires
+    news: Actualités
+    projects: Projets
+
+rightmenu:
+    profile: Profil
+    admin: Administration
+    logout: Déconnexion
+    login: Connexion
+    register: Inscription
+
+login:
+    title: Connexion
+    subtitle: Merci de remplir le formulaire
+    retrievepassword: J'ai oublié mon mot de passe
+    register: S'inscrire

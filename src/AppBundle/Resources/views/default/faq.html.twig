@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h5 class="description">FAQ</h5>
+    {% for item in items %}
+        <div class="well">
+            <div class="media">
+                <a class="pull-left" href="{{ url('faqPage', {slug: item.slug}) }}">
+                    <img class="media-object" height="240" src="{{ item.imageUrl }}">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a  href="{{ url('faqPage', {slug: item.slug}) }}">
+                            <p class="pull-left description">
+                                {{ item.title }}
+                            </p>
+                        </a>
+                    </h4>
+                    <p class="text-right">By Francisco</p>
+                    <p>{{ item.headline }}</p>
+                    <ul class="list-inline list-unstyled">
+                        <li><span><i class="glyphicon glyphicon-calendar"></i> {{ item.updatedAt|date('d/m/Y H:i:s') }}</span></li>
+                        <li>|</li>
+                        <span><i class="glyphicon glyphicon-comment"></i> {{ item.children|length }} commentaire(s)</span>
+                        {#<li>|</li>#}
+                        {#<li>#}
+                        {#<span class="glyphicon glyphicon-star"></span>#}
+                        {#<span class="glyphicon glyphicon-star"></span>#}
+                        {#<span class="glyphicon glyphicon-star"></span>#}
+                        {#<span class="glyphicon glyphicon-star"></span>#}
+                        {#<span class="glyphicon glyphicon-star-empty"></span>#}
+                        {#</li>#}
+                        <li>|</li>
+                        <li>
+                            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                            <span><i class="fa fa-facebook-square"></i></span>
+                            <span><i class="fa fa-twitter-square"></i></span>
+                            <span><i class="fa fa-google-plus-square"></i></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock body %}

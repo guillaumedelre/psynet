@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h5 class="description">LES PROJETS</h5>
+
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" height="240" src="{{ item.imageUrl }}">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading description">{{ item.title }}</h4>
+            <p>{{ item.headline|raw }}</p>
+            <p>{{ item.content|raw }}</p>
+            <ul class="list-inline list-unstyled">
+                <li><span><i class="glyphicon glyphicon-calendar"></i> {{ item.updatedAt|date('d/m/Y H:i:s') }}</span></li>
+                <li>|</li>
+                <span><i class="glyphicon glyphicon-comment"></i> {{ item.children|length }} commentaire(s)</span>
+                <li>|</li>
+                <li>
+                    <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                    <a href="#" class="text-muted"><i class="fa fa-facebook-square"></i></a>
+                    <a href="#" class="text-muted"><i class="fa fa-twitter-square"></i></a>
+                    <a href="#" class="text-muted"><i class="fa fa-google-plus-square"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% if item.children %}
+        {% for child in item.children %}
+            <div class="well">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" height="240" src="{{ child.imageUrl }}">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ child.title }}</h4>
+                        <p>{{ child.content|raw }}</p>
+                        <ul class="list-inline list-unstyled">
+                            <li><span><i class="glyphicon glyphicon-calendar"></i> {{ child.updatedAt|date('d/m/Y H:i:s') }}</span></li>
+                            <li>|</li>
+                            <li>
+                                <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                                <a href="#" class="text-muted"><i class="fa fa-facebook-square"></i></a>
+                                <a href="#" class="text-muted"><i class="fa fa-twitter-square"></i></a>
+                                <a href="#" class="text-muted"><i class="fa fa-google-plus-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock body %}

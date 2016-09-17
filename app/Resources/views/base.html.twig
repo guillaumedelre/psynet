@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{{ title }}{% endblock title %}</title>
+    <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/common.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock stylesheets %}
+</head>
+<body class="{% block body_class %}{% endblock body_class %}">
+    {% block nav_top %}
+        {% if app.user %}
+            {% if app.user.roles[0] == 'ROLE_STUDENT' %}
+                {{ include("nav/nav_top_student.html.twig") }}
+            {% elseif app.user.roles[0] == 'ROLE_PRO' %}
+                {{ include("nav/nav_top_pro.html.twig") }}
+            {% elseif app.user.roles[0] == 'ROLE_SUPER_ADMIN' %}
+                {{ include("nav/nav_top_admin.html.twig") }}
+            {% endif %}
+        {% else %}
+            {{ include("nav/nav_top_public.html.twig") }}
+        {% endif %}
+    {% endblock nav_top %}
+
+    <div class="container-fluid">
+        {% block body %}{% endblock body %}
+    </div>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    {% block javascripts %}{% endblock javascripts %}
+</body>
+</html>

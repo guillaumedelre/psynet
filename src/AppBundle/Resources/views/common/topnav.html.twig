@@ -1,0 +1,17 @@
+<ul class="nav navbar-nav">
+    {% for item in menu %}
+        {% if item.children|length > 0 %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">{{ item.label }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    {% for child in item.children %}
+                        <li><a href="{{ url(child.route.name) }}">{{ child.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% else %}
+            <li><a href="{{ url(item.route.name) }}">{{ item.label }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
